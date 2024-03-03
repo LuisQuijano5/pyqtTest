@@ -16,6 +16,8 @@ def runQML():
         stylesheet = f.read()
     app.setStyleSheet(stylesheet)
 
+    print("Holaaaa")
+
     return app.exec()
 
 if __name__ == "__main__":
