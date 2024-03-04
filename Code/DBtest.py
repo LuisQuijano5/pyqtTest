@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('MySQL Connection Example')
+        self.setWindowTitle('MySQL Connection DEMO')
         self.init_ui()
 
     def init_ui(self):
