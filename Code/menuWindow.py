@@ -9,7 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 from Code.optionsWindow import Ui_optionsWindow
-
+from PyQt6.QtWidgets import QLabel
 
 class Ui_MainWindow(object):
     def openWindow(self):
@@ -19,17 +19,46 @@ class Ui_MainWindow(object):
         self.window.show()
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(400, 600)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget, clicked = lambda: self.openWindow()) # opens window
-        self.pushButton.setGeometry(QtCore.QRect(270, 240, 161, 61))
+
+        # Create Label object for the title
+        self.label = QLabel(parent=self.centralwidget)
+        self.label.setText("Nombre App")
+        self.label.setGeometry(QtCore.QRect(130, 50, 200, 30))
+
+        # Asign the initial vertical position for names
+        y_pos = 150
+
+        # Create a lable for each name
+        for nombre in ["-Emilio Sebastián Chavez Vega", "-Ulises Andrade Gonzalez",
+                       "-Luis Angel Quijano Guerrero", "-Erick Martín Morín Lopez"]:
+            label = QLabel(parent=self.centralwidget)
+            label.setText(nombre)
+            label.setGeometry(QtCore.QRect(100, y_pos, 200, 30))
+            y_pos += 30  # the vertical position is adjusted for each label
+
+        # Select the Font and Size
         font = QtGui.QFont()
-        font.setPointSize(25)
+        font.setPointSize(16)
+        self.label.setFont(font)
+
+        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget, clicked = lambda: self.openWindow()) # opens window
+        self.pushButton.setGeometry(QtCore.QRect(200, 500, 100, 30))
+        font = QtGui.QFont()
+        font.setPointSize(12)
         self.pushButton.setFont(font)
         self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.pushButton.setObjectName("pushButton")
+
+        # Create the Exit button
+        self.pushButtonSalir = QtWidgets.QPushButton(parent=self.centralwidget, text="Salir", clicked=MainWindow.close)
+        self.pushButtonSalir.setGeometry(QtCore.QRect(75, 500, 100, 30))
+        self.pushButtonSalir.setFont(font)
+
         MainWindow.setCentralWidget(self.centralwidget)
+
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
         self.menubar.setObjectName("menubar")
