@@ -34,6 +34,8 @@ class View(QMainWindow):
         self.taskInput.setStyleSheet("border: 3px solid #ffffff")
         self.layout.addWidget(self.taskInput)
         self.add_button = QPushButton("Add Task")
+        self.add_button.setStyleSheet("color: rgb(100, 255, 100);"
+                                      "border: 5px solid rgb(255, 255, 255);")
         self.layout.addWidget(self.add_button)
 
         self.taskList = QListWidget()

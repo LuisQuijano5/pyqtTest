@@ -46,11 +46,10 @@ class MainWindow(QWidget):
         USER = 'topicos'
         PASSWORD = 'TopicosProgra#'
 
-        # Input validation
+        #input validation
         if not (nameV and priceV and quantityV and colorV):
             QMessageBox.warning(self, 'Warning', 'Please fill in all fields')
             return
-
         try:
             priceV = float(priceV)
             quantityV = int(quantityV)
@@ -58,16 +57,20 @@ class MainWindow(QWidget):
             QMessageBox.warning(self, 'Warning', 'Invalid price or quantity')
             return
 
-        # Establishing the connection
+        #establishing the connection
         connection = mysql.connector.connect(
             host=HOST,
             database=DATABASE,
             user=USER,
             password=PASSWORD
         )
-
         cursor = connection.cursor()
-
+        """
+        IMPORTANT EXPLAIN
+        cursor: refers to an object provided by the MySQL connector library
+        that allows the interaction with the MySQL database. 
+        The cursor acts as a communication channel between PyQt and MySQL
+        """
         insert_query = "INSERT INTO products (name, price, quantity, color) VALUES (%s, %s, %s, %s)"
         cursor.execute(insert_query, (nameV, priceV, quantityV, colorV))
 
